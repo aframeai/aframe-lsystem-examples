@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>A-Frame L-System Component - Animated Tree</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-lsystem-component@0.2.0/dist/aframe-lsystem-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-mixin id="brown" material="color: peru;"></a-mixin>
+        <a-mixin id="line" scale="0.1 0.1 0.1" geometry="primitive: box" ></a-mixin>
+      </a-assets>
+      <a-sky color="#FAFAFA"> </a-sky>
+      <a-entity position="0 0 -4" rotation="0 45 0">
+        <a-plane 
+        rotation="-90 0 0" 
+        width="4" height="4" 
+        color="#7BC8A4"
+      >
+      </a-plane>
+        <a-entity 
+          id="lsys"
+          rotation="0 90 90"
+          lsystem="axiom: X; productions: F:FF X:F[+X]F[-X]+X; segmentMixins: F:brown line; angle: 0; iterations: 4; translateAxis: X"
+          animation="property: lsystem.angle; dur: 5000; loop: true; to: 90.0"
+        >
+        </a-entity>
+      </a-entity>
+
+</a-scene>
+
+</body>
+</html>
