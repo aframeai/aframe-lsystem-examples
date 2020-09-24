@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame L-System Component - Iteration Animation</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-lsystem-component@0.2.0/dist/aframe-lsystem-component.min.js"></script>
+    <script src="iterate.js"></script>
+  </head>
+  <body>
+    <a-scene fog="type: linear; color: #000; far: 20">
+      <a-assets>
+        <a-mixin id="line" geometry="primitive: box; height: 0.1; width: 0.8; depth: 0.1"></a-mixin>
+        <a-mixin id="yellow" material="color: #ffb;"></a-mixin>
+        <a-mixin id="red" material="color: #930;"></a-mixin>
+        <a-mixin id="joint" geometry="primitive: sphere ; radius: 0.1; segments-height: 6; segments-width: 6"></a-mixin>
+        <a-mixin id="gap" geometry="primitive: box ; width: 0.05"></a-mixin> 
+        <a-mixin id="invisible" visible="false"></a-mixin>
+      </a-assets>
+      <a-camera fov="60"></a-camera>
+      <a-sky color="#66a"> </a-sky>
+     
+      <a-entity 
+        id="hilbertcurve" 
+        lsystem="iterations: 2; axiom: X; productions: X:^<XF^<XFX-F^>>XFX&F+>>XFX-F>X-> F:JLG; segmentMixins: J:red joint G:invisible gap L:yellow line; angle: 90; translateAxis: X;" 
+        iterate="attribute:lsystem; property:iterations; from:2; to:5; step:1; loop:true; dur:2000"
+        rotation="0 45 0" 
+        position="0 -1 -4">
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
