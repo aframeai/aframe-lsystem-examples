@@ -5,25 +5,20 @@
     <title>Tubular L-System Experiment</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-lsystem-component@0.2.0/dist/aframe-lsystem-component.min.js"></script>
-    <script src="joint.js"></script>
-    <script src="link.js"></script>
+    <script src="offset.js"></script>
   </head>
   <body>
     <a-scene >
       <a-sky color="white"></a-sky>
       <a-assets>
-        <a-mixin id="line" geometry="primitive: link; height: 2; radius: 0.2; segments-radial: 8; segments-height:1;"></a-mixin>
+        <a-mixin id="line" geometry="primitive: cylinder; height: 2; radius: 0.2; segments-radial: 8; segments-height:1;" offset="0 0.2 0" ></a-mixin>
         <a-mixin id="white" material="color: #ccc;"></a-mixin>
         <a-mixin id="red" material="color: #930;"></a-mixin>
-        <a-mixin id="joint"  geometry="primitive: joint; theta-start:30;  arc: 90; radius: 1.4; radius-tubular: 0.1; segments-radial:8; segments-tubular:8"></a-mixin>
+        <a-mixin id="joint" geometry="primitive: torus; theta-start:30; arc: 90; radius: 1.4; radius-tubular: 0.1; segments-radial:8; segments-tubular:8" offset="-1.4 -0.6 0" ></a-mixin>
         <a-mixin id="invisible" visible="false"></a-mixin>
         <a-mixin id="gap" geometry="primitive: box ;height: 1.2; depth: 1"></a-mixin> 
-
       </a-assets>     
-      <a-entity 
-        position="4 8 -40"
-        manimation="property:rotation; from: 0 0 0; to:0 360 0; dur: 100000; easing:linear; loop: true"
-      >
+      <a-entity position="4 8 -40">
         <a-entity 
           lsystem="iterations: 8; axiom: A; productions: A:lBrBl B:rFAAAFr l:J+<-G r:++J->-G ; segmentMixins: J:white joint G: invisible gap F:white line; angle: 90; translateAxis: Y;"
           rotation="-60 0 0" 
